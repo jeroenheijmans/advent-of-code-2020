@@ -208,10 +208,13 @@ let data = input
   .map(x => parseInt(x))
   ;
 
-for (let a=0; a<data.length; a++)
-  for (let b=a+1; b<data.length; b++)
+for (let a=0; a<data.length; a++) {
+  for (let b=a+1; b<data.length; b++) {
+    if (data[a]+data[b] === 2020) console.log('Part 1', data[a]*data[b]);
     for (let c=b+1; c<data.length; c++) {
       if (data[a]+data[b]+data[c] === 2020) {
-        console.log(data[a]*data[b]*data[c]);
+        console.log('Part 2', data[a]*data[b]*data[c]);
       }
     }
+  }
+}
