@@ -208,10 +208,10 @@ let data = input
   .map(x => parseInt(x))
   ;
 
-data.forEach(x => {
-  const y = data.find(z => z !== x && z+x === 2020) || 0;
-  console.log('Found', x * y);
-})
-
-
-console.log('Day 01a:', data);
+for (let a=0; a<data.length; a++)
+  for (let b=a+1; b<data.length; b++)
+    for (let c=b+1; c<data.length; c++) {
+      if (data[a]+data[b]+data[c] === 2020) {
+        console.log(data[a]*data[b]*data[c]);
+      }
+    }
