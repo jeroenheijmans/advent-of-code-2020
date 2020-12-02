@@ -1018,15 +1018,18 @@ let data = input
   })
   ;
 
-let result = 0;
+let part1 = 0;
+let part2 = 0;
 
 data.forEach(x => {
   let len = x.pwd.split("").filter(y => y === x.letter).length;
   let ls = x.pwd.split("");
-  if (ls[x.min-1] === x.letter && ls[x.max-1] !== x.letter) result++;
-  if (ls[x.min-1] !== x.letter && ls[x.max-1] === x.letter) result++;
+  if (len >= x.min && len <= x.max) part1++;
+  if (ls[x.min-1] === x.letter && ls[x.max-1] !== x.letter) part2++;
+  if (ls[x.min-1] !== x.letter && ls[x.max-1] === x.letter) part2++;
 })
 
-console.log(result);
+console.log('Part 1:', part1);
+console.log('Part 2:', part2);
 
 })();
