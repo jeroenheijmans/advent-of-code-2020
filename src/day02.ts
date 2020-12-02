@@ -1023,8 +1023,8 @@ let result = 0;
 data.forEach(x => {
   let len = x.pwd.split("").filter(y => y === x.letter).length;
   let ls = x.pwd.split("");
-  if (ls[x.min] === x.letter && ls[x.max] !== x.letter) result++;
-  if (ls[x.min] !== x.letter && ls[x.max] === x.letter) result++;
+  if (ls[x.min+1] === x.letter && ls[x.max+1] !== x.letter) result++;
+  if (ls[x.min+1] !== x.letter && ls[x.max+1] === x.letter) result++;
 })
 
 console.log(result);
