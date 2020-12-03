@@ -349,7 +349,10 @@ let data = input
 let result = 0;
 
 for (let py=0, px=0; py<data.length; py++, px+=3) {
+  px %= data[0].length; // Where was this in the instructions?? Oh well!
   if (data[py][px] === "#") result++;
+  data[py][px] = data[py][px] === "#" ? "X" : "0";
+  console.log(data[py].join(""));
 }
 
 console.log('Part 1:', result);
