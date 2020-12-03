@@ -12,8 +12,8 @@ Then again, this might be an excuse to try Deno?
 Some learned lesson for each day:
 
 1. Dev setups ar nearly never trivial.
-2. TBD.
-3. TBD.
+2. Dev may require ramping up first.
+3. Devs filling in blanks might be _needed_ sometimes.
 4. TBD.
 5. TBD.
 6. TBD.
