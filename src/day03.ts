@@ -346,15 +346,24 @@ let data = input
   .map(x => x.trim().split(""))
   ;
 
-let result = 0;
+let part1 = 0, part2 = 1;
+const combis = [[1,1], [3,1], [5,1], [7,1], [1,2]];
 
 for (let py=0, px=0; py<data.length; py++, px+=3) {
   px %= data[0].length; // Where was this in the instructions?? Oh well!
-  if (data[py][px] === "#") result++;
-  data[py][px] = data[py][px] === "#" ? "X" : "0";
-  console.log(data[py].join(""));
+  if (data[py][px] === "#") part1++;
 }
 
-console.log('Part 1:', result);
+combis.forEach(([right,down]) => {
+  let result = 0;
+  for (let py=0, px=0; py<data.length; py+=down, px+=right) {
+    px %= data[0].length; // Where was this in the instructions?? Oh well!
+    if (data[py][px] === "#") result++;
+  }
+  part2 *= result;
+});
+
+console.log('Part 1:', part1);
+console.log('Part 2:', part2);
 
 })();
