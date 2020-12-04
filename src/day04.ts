@@ -1,4 +1,7 @@
 (() => {
+interface Dictionary<T> {
+    [Key: string]: T;
+}
 
 const input = `
 byr:1971
@@ -1174,7 +1177,7 @@ let data = input
   .filter(x => !!x)
   .map(x => x
     .split(/\s+/)
-    .reduce((obj: any, field) => {
+    .reduce((obj: Dictionary<string>, field) => {
       obj[field.split(":")[0]] = field.split(":")[1];
       return obj;
     }, {})
@@ -1186,6 +1189,46 @@ data.forEach(pp => {
   if (required.every(k => Object.keys(pp).includes(k))) {
     part1++;
   }
+})
+
+data.forEach(pp => {
+  if (!required.every(k => Object.keys(pp).includes(k))) {
+    return;
+  }
+
+  if (parseInt(pp["byr"]) < 1920 || parseInt(pp["byr"]) > 2002) {
+    return;
+  }
+  
+  if (parseInt(pp["iyr"]) < 2010 || parseInt(pp["iyr"]) > 2020) {
+    return;
+  }
+  
+  if (parseInt(pp["eyr"]) < 2020 || parseInt(pp["eyr"]) > 2030) {
+    return;
+  }
+
+  const hgt = parseInt(pp["hgt"].split(/cm|in/)[0]);
+  if (pp["hgt"].endsWith("in") && (hgt < 59 || hgt > 76)) {
+    return;
+  }
+  if (pp["hgt"].endsWith("cm") && (hgt < 150 || hgt > 193)) {
+    return;
+  }
+
+  if (!pp["hcl"].match(/#[\da-f]{6}/)) {
+    return;
+  }
+
+  if (!["amb","blu","brn","gry","grn","hzl","oth"].includes(pp["ecl"])) {
+    return;
+  }
+
+  if (!pp["pid"].match(/\d{9}/)) {
+    return;
+  }
+
+  part2++;
 })
 
 console.log('Part 1:', part1);
