@@ -14,7 +14,7 @@ Some learned lesson for each day:
 1. Dev setups ar nearly never trivial.
 2. Dev may require ramping up first.
 3. Devs filling in blanks might be _needed_ sometimes.
-4. TBD.
+4. Devs should test code with realistic data.
 5. TBD.
 6. TBD.
 7. TBD.
