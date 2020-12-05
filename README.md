@@ -15,7 +15,7 @@ Some learned lesson for each day:
 2. Dev may require ramping up first.
 3. Devs filling in blanks might be _needed_ sometimes.
 4. Devs should test code with realistic data.
-5. TBD.
+5. Abstractions _will_ leak.
 6. TBD.
 7. TBD.
 8. TBD.
