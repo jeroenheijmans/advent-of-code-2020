@@ -891,11 +891,24 @@ function seatId(pass: string) {
   return row * 8 + col;
 }
 
-console.log('Sanity check, should be 567: ', seatId("BFFFBBFRRR")); //: row 70, column 7, seat ID 567
-console.log('Sanity check, should be 119: ', seatId("FFFBBBFRRR")); //: row 14, column 7, seat ID 119
-console.log('Sanity check, should be 820: ', seatId("BBFFBBFRLL")); //: row 102, column 4, seat ID 820
+// console.log('Sanity check, should be 567: ', seatId("BFFFBBFRRR")); //: row 70, column 7, seat ID 567
+// console.log('Sanity check, should be 119: ', seatId("FFFBBBFRRR")); //: row 14, column 7, seat ID 119
+// console.log('Sanity check, should be 820: ', seatId("BBFFBBFRLL")); //: row 102, column 4, seat ID 820
 
-part1 = Math.max.apply(Math, data.map(p => seatId(p)));
+let seats = data.map(p => seatId(p)).sort();
+part1 = Math.max.apply(Math, seats);
+
+let max = part1, min = Math.min.apply(Math, seats);
+for (let i=min+1; i<max-1; i++) {
+  if (
+    !seats.includes(i)
+    && seats.includes(i-1)
+    && seats.includes(i+1)
+  ) {
+    part2 = i;
+    break;
+  }
+}
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
