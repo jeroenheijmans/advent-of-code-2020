@@ -2256,11 +2256,15 @@ let data = input
 
 let part1 = 0, part2 = 0;
 
-console.log(data);
-
 let counts = data.map(g => new Set(g.join("")).size);
-
 part1 = counts.reduce((result, curr) => result + curr);
+
+let alls = data.map(g => g
+  .map(i => [...i])
+  .reduce((result, curr) => result.filter(x => curr.includes(x)))
+);
+
+part2 = alls.map(x => x.length).reduce((result, curr) => result + curr);
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
