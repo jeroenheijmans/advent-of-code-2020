@@ -609,6 +609,16 @@ faded blue bags contain no other bags.
 dotted black bags contain no other bags.
 `;
 
+const anotherexample = `
+shiny gold bags contain 2 dark red bags.
+dark red bags contain 2 dark orange bags.
+dark orange bags contain 2 dark yellow bags.
+dark yellow bags contain 2 dark green bags.
+dark green bags contain 2 dark blue bags.
+dark blue bags contain 2 dark violet bags.
+dark violet bags contain no other bags.
+`;
+
 let data = input
   .trim()
   .split(/\r?\n/)
@@ -628,7 +638,15 @@ let data = input
   })
   ;
 
-// console.log(JSON.stringify(data, null, 2));
+interface Bag {
+  nr: number;
+  bagtype: string;
+}
+
+interface Link {
+  source: string;
+  targets: Bag[];
+}
 
 let outers = new Set<string>(data
   .filter(b => b.targets.some(b => b.bagtype === "shiny gold"))
@@ -650,9 +668,19 @@ while(true) {
   outers = newOuters;
 }
 
-console.log(outers);
-
 let part1 = outers.size, part2 = 0;
+
+function recurse(bags: Link[]): number {
+  let total = 0;
+  bags.forEach(b => {
+    b.targets.forEach(t => {
+      total += t.nr + (t.nr * recurse(data.filter(x => x.source === t.bagtype)));
+    });
+  });
+  return total;
+}
+
+part2 = recurse(data.filter(b => b.source === "shiny gold"));
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
