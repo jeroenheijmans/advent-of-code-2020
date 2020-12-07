@@ -17,7 +17,7 @@ Some learned lesson for each day:
 4. Devs should test code with realistic data.
 5. Abstractions _will_ leak.
 6. Not everything is as hard as it seems.
-7. TBD.
+7. See point 7 and then some, unless you've done that a million times already, then just smile a little.
 8. TBD.
 9. TBD.
 10. TBD.
