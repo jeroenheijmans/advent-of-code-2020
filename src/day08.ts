@@ -666,43 +666,68 @@ jmp -4
 acc +6
 `;
 
-let data = input
-  .trim()
-  .split(/\r?\n/)
-  .filter(x => !!x)
-  .map(x => ({
-    instruction: x.split(" ")[0],
-    value: parseInt(x.split(" ")[1]),
-  }))
-  ;
+function parseProgram(input: string): { instruction: string, value: number }[] {
+  return input
+    .trim()
+    .split(/\r?\n/)
+    .filter(x => !!x)
+    .map(x => ({
+      instruction: x.split(" ")[0],
+      value: parseInt(x.split(" ")[1]),
+    }));
+}
+
+let data = parseProgram(input);
 
 let part1 = 0, part2 = 0;
 
-let accumulator = 0, pos = 0;
-let ps = new Set();
+function execute(program: { instruction: string, value: number }[]) {
+  let accumulator = 0, pos = 0, terminated = false;;
+  let ps = new Set();
 
-while (true) {
-  if (ps.has(pos)) {
-    part1 = accumulator;
-    break;
+  while (true) {
+    if (ps.has(pos)) {
+      part1 = accumulator;
+      break;
+    }
+    if (pos === program.length) {
+      terminated = true;
+      break;
+    }
+    ps.add(pos);
+    switch(program[pos].instruction) {
+      case "nop":
+        pos++;
+        break;
+      case "acc":
+        accumulator += program[pos].value;
+        pos++;
+        break;
+      case "jmp":
+        pos += program[pos].value;
+        break;
+      default:
+        throw new Error("Uknown instruction");
+    }
   }
-  ps.add(pos);
-  switch(data[pos].instruction) {
-    case "nop":
-      pos++;
-      break;
-    case "acc":
-      accumulator += data[pos].value;
-      pos++;
-      break;
-    case "jmp":
-      pos += data[pos].value;
-      break;
-    default:
-      throw new Error("Uknown instruction");
-  }
+
+  return { terminated, accumulator };
 }
 
+part1 = execute(data).accumulator;
+
+for (let pToChange = 0; pToChange < data.length; pToChange++) {
+  let program = parseProgram(input);
+  if (program[pToChange].instruction === "nop") program[pToChange].instruction = "jmp";
+  else if (program[pToChange].instruction === "jmp") program[pToChange].instruction = "nop";
+  else continue;
+
+  let result = execute(program);
+  if (result.terminated) {
+    part2 = result.accumulator;
+    break;
+  }
+}
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
