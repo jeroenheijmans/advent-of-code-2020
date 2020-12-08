@@ -18,7 +18,7 @@ Some learned lesson for each day:
 5. Abstractions _will_ leak.
 6. Not everything is as hard as it seems.
 7. See point 7 and then some, unless you've done that a million times already, then just smile a little.
-8. TBD.
+8. Devs should see certain tasks coming.
 9. TBD.
 10. TBD.
 11. TBD.
