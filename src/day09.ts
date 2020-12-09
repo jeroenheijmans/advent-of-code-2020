@@ -1036,15 +1036,15 @@ let part1 = 0, part2 = 0;
 
 let size = 25, pos = size;
 
-while (++pos < data.length) {
-  const preamble = data.slice(pos - size - 1, pos - 1);
+do {
+  const preamble = data.slice(pos - size, pos);
   const options = preamble.map(p => preamble.filter(p2 => p2 != p).map(p2 => p2+p)).reduce((curr, next) => next.concat(curr), []);
 
   if (!options.includes(data[pos])) {
     part1 = data[pos];
     break;
   }
-}
+} while (++pos < data.length);
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
