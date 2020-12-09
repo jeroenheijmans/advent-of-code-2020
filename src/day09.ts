@@ -1046,6 +1046,33 @@ do {
   }
 } while (++pos < data.length);
 
+pos = 0;
+
+do {
+  let sum = 0, min = data[pos], max = data[pos];
+  
+  for (let i=pos; i<data.length; i++) {
+    sum += data[i];
+    min = Math.min(min, data[i]);
+    max = Math.max(max, data[i]);
+
+    if (sum === part1) {
+      part2 = min + max;
+      break;
+    }
+
+    if (sum > part1) {
+      break;
+    }
+  }
+
+  if (part2) {
+    break;
+  }
+
+} while (++pos < data.length);
+
+
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
 
