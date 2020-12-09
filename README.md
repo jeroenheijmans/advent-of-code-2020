@@ -19,7 +19,7 @@ Some learned lesson for each day:
 6. Not everything is as hard as it seems.
 7. See point 7 and then some, unless you've done that a million times already, then just smile a little.
 8. Devs should see certain tasks coming.
-9. TBD.
+9. Security is _hard_ to get right.
 10. TBD.
 11. TBD.
 12. TBD.
