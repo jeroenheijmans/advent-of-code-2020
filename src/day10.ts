@@ -107,17 +107,11 @@ const input = `
 `;
 
 const example = `
-1
+3
 4
 5
-7
 6
-10
-11
-12
-15
-16
-19
+7
 `;
 
 const largeexample = `
@@ -154,7 +148,7 @@ const largeexample = `
 3
 `;
 
-let data = largeexample
+let data = input
   .trim()
   .split(/\r?\n/)
   .filter(x => !!x)
@@ -178,6 +172,16 @@ part1 = ones * threes;
 data.unshift(0); // outlet
 data.push(data[data.length-1] + 3); // final device
 
+const graph: any = {}
+data.forEach(x => { graph[x] = { joltage: x } });
+data.forEach(x => {
+  graph[x].links = data.filter(j => j >= x-3 && j < x).map(j => graph[j]);
+});
+
+const upaths: any = { };
+upaths[data[0]] = 1;
+upaths[data[1]] = 1;
+
 function uniquePathsTo(joltage: number): number {
   const idx = data.indexOf(joltage);
 
@@ -185,9 +189,10 @@ function uniquePathsTo(joltage: number): number {
   if (idx === 1) return 1;
 
   const reachable = data.filter(j => j >= joltage-3 && j < joltage);
-  // console.log('Can reach', joltage.toString().padStart(2, " "), 'from', reachable);
-  
-  return reachable.map(r => uniquePathsTo(r)).reduce((a,b) => a + b);
+  let result = 0;
+  reachable.forEach(r => result += upaths[r] || uniquePathsTo(r));
+  upaths[joltage] = result;
+  return result;
 }
 
 part2 = uniquePathsTo(data[data.length-1]);
