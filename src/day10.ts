@@ -107,27 +107,61 @@ const input = `
 `;
 
 const example = `
-16
-10
-15
-5
 1
-11
-7
-19
-6
-12
 4
+5
+7
+6
+10
+11
+12
+15
+16
+19
 `;
 
-let data = input
+const largeexample = `
+28
+33
+18
+42
+31
+14
+46
+20
+48
+47
+24
+23
+49
+45
+19
+38
+39
+11
+1
+32
+25
+35
+8
+17
+7
+9
+4
+2
+34
+10
+3
+`;
+
+let data = largeexample
   .trim()
   .split(/\r?\n/)
   .filter(x => !!x)
   .map(x => parseInt(x))
   .sort((a, b) => a - b);
 
-let part1 = 0, part2 = 0;
+let part1 = 0, part2 = 1;
 let joltage = 0, ones = 0, threes = 0;
 
 for (let i=0; i<data.length; i++) {
@@ -140,6 +174,23 @@ for (let i=0; i<data.length; i++) {
 threes++; // final device
 
 part1 = ones * threes;
+
+data.unshift(0); // outlet
+data.push(data[data.length-1] + 3); // final device
+
+function uniquePathsTo(joltage: number): number {
+  const idx = data.indexOf(joltage);
+
+  if (idx === 0) return 1;
+  if (idx === 1) return 1;
+
+  const reachable = data.filter(j => j >= joltage-3 && j < joltage);
+  // console.log('Can reach', joltage.toString().padStart(2, " "), 'from', reachable);
+  
+  return reachable.map(r => uniquePathsTo(r)).reduce((a,b) => a + b);
+}
+
+part2 = uniquePathsTo(data[data.length-1]);
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
