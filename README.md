@@ -22,7 +22,7 @@ Some learned lesson for each day:
 9. Security is _hard_ to get right.
 10. Mental models of graphs are tough.
 11. TBD.
-12. TBD.
+12. Tiredness lowers IQ.
 13. TBD.
 14. TBD.
 15. TBD.
