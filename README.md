@@ -21,7 +21,7 @@ Some learned lesson for each day:
 8. Devs should see certain tasks coming.
 9. Security is _hard_ to get right.
 10. Mental models of graphs are tough.
-11. TBD.
+11. The Game of Life is hard, but fun!
 12. Tiredness lowers IQ.
 13. TBD.
 14. TBD.
