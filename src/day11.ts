@@ -203,9 +203,10 @@ while (true) {
 
       let occupieds = 0, empties = 0;
 
-      for (let ty=y-1; ty<=y+1; ty++) {
-        for (let tx=x-1; tx<=x+1; tx++) {
-          const visible = getVisibleSeat(x+tx, y+ty, tx, ty, data);
+      for (let dy = -1; dy <= +1; dy++) {
+        for (let dx = -1; dx <= +1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const visible = getVisibleSeat(x+dx, y+dy, dx, dy, data);
           if (visible === "L") empties++;
           if (visible === "#") occupieds++;
         }
@@ -228,8 +229,6 @@ while (true) {
   }
 
   data = newdata;
-  data.forEach(r => console.log(r.join("")));
-  console.log();
   if (same) break;
 }
 
@@ -238,9 +237,6 @@ for (let y=0; y<data.length; y++) {
     if (data[y][x] === "#") part2++;
   }
 }
-
-// 5566 too high pt 2
-// 5518 too high pt 2
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
