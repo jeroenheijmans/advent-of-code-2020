@@ -107,13 +107,15 @@ L.LLLLLL.L
 L.LLLLL.LL
 `;
 
-let data = input
+let source = input
   .trim()
   .split(/\r?\n/)
   .filter(x => !!x)
   .map(x => x.split(""));
 
 let part1 = 0, part2 = 0;
+
+let data = source.map(rows => rows.slice(0));
 
 while (true) {
   let newdata = data.map(rows => rows.slice(0));
@@ -156,14 +158,73 @@ while (true) {
   if (same) break;
 }
 
-// data.forEach(r => console.log(r.join("")))
-
 for (let y=0; y<data.length; y++) {
   for (let x=0; x<data[0].length; x++) {
     if (data[y][x] === "#") part1++;
   }
 }
 
+function getVisibleSeat(x: number, y: number, dirx: number, diry: number, data: Array<Array<string>>): string {
+  if (x < 0) return "";
+  if (y < 0) return "";
+  if (y >= data.length) return "";
+  if (x >= data[0].length) return "";
+
+  if (data[y][x] === "L") return "L";
+  if (data[y][x] === "#") return "#";
+
+  return getVisibleSeat(x + dirx, y + diry, dirx, diry, data);
+}
+
+// Reset for part2:
+data = source.map(rows => rows.slice(0));
+
+while (true) {
+  let newdata = data.map(rows => rows.slice(0));
+
+  for (let y=0; y<data.length; y++) {
+    for (let x=0; x<data[0].length; x++) {
+
+      if (data[y][x] === ".") continue; // nobody sits on the floor!
+
+      let occupieds = 0, empties = 0;
+
+      
+      for (let ty=y-1; ty<=y+1; ty++) {
+        for (let tx=x-1; tx<=x+1; tx++) {
+          const visible = getVisibleSeat(x+tx, y+ty, tx, ty, data);
+          if (visible === "L") empties++;
+          if (visible === "#") occupieds++;
+        }
+      }
+
+      if (data[y][x] === "L" && occupieds === 0) newdata[y][x] = "#";
+      if (data[y][x] === "#" && occupieds > 5) newdata[y][x] = "L";
+    }
+  }
+  
+  let same = true;
+  for (let y=0; y<data.length; y++) {
+    for (let x=0; x<data[0].length; x++) {
+      if (data[y][x] !== newdata[y][x]) {
+        same = false;
+        break;
+      }
+    }
+    if (!same) break;
+  }
+
+  data = newdata;
+  if (same) break;
+}
+
+for (let y=0; y<data.length; y++) {
+  for (let x=0; x<data[0].length; x++) {
+    if (data[y][x] === "#") part2++;
+  }
+}
+
+// 5566 too high pt 2
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
