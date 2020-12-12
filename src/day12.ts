@@ -843,7 +843,7 @@ data.forEach(rule => {
     switch (rotate) {
       case 90:  newx = -py; newy = -px; break;
       case 180: newx = -px; newy = -py; break;
-      case 270: newy = -px; newx = -py; break;
+      case 270: newx = -py; newy = px; break;
       case 360: break;
       default: throw new Error("Unknown rotation " + rotate);
     }
@@ -865,6 +865,7 @@ data.forEach(rule => {
 
 // NOT: 25843 (too low)
 // NOT: 23123 (too low)
+// Note 34701
 part2 = Math.abs(shipx) + Math.abs(shipy);
 
 console.log('Part 1:', part1);
