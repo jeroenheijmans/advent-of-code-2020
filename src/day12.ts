@@ -841,7 +841,7 @@ data.forEach(rule => {
 
     let newx = 0, newy = 0;
     switch (rotate) {
-      case 90: newx = py; newy = -px; break;
+      case 90:  newx = -py; newy = -px; break;
       case 180: newx = -px; newy = -py; break;
       case 270: newy = -px; newx = -py; break;
       case 360: break;
@@ -862,6 +862,9 @@ data.forEach(rule => {
   console.log(rule, "led to ship", shipx, shipy, "and waypoint", px, py);
 });
 
+
+// NOT: 25843 (too low)
+// NOT: 23123 (too low)
 part2 = Math.abs(shipx) + Math.abs(shipy);
 
 console.log('Part 1:', part1);
