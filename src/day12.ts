@@ -841,9 +841,9 @@ data.forEach(rule => {
 
     let newx = 0, newy = 0;
     switch (rotate) {
-      case 90:  newx = -py; newy = -px; break;
+      case 90:  newx =  py; newy = -px; break;
       case 180: newx = -px; newy = -py; break;
-      case 270: newx = -py; newy = px; break;
+      case 270: newx = -py; newy =  px; break;
       case 360: break;
       default: throw new Error("Unknown rotation " + rotate);
     }
