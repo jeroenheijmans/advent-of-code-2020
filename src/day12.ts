@@ -827,6 +827,42 @@ data.forEach(rule => {
 
 part1 = Math.abs(px) + Math.abs(py);
 
+let shipx = 0, shipy = 0;
+px = 10, py = 1;
+
+data.forEach(rule => {
+  if (rule.instruction === "F") {
+    shipx += px * rule.value;
+    shipy += py * rule.value;
+  } else if (rule.instruction === "R" || rule.instruction === "L") {
+    const rotate = rule.instruction === "L"
+      ? 360 - rule.value
+      : rule.value;
+
+    let newx = 0, newy = 0;
+    switch (rotate) {
+      case 90: newx = py; newy = -px; break;
+      case 180: newx = -px; newy = -py; break;
+      case 270: newy = -px; newx = py; break;
+      case 360: break;
+      default: throw new Error("Unknown rotation " + rotate);
+    }
+    px = newx;
+    py = newy;
+  } else {
+    switch (rule.instruction) {
+      case "E": px += rule.value; break;
+      case "W": px -= rule.value; break;
+      case "N": py += rule.value; break;
+      case "S": py -= rule.value; break;
+      default: throw new Error("Uknown direction " + direction);
+    }
+  }
+
+  console.log(rule, "led to ship", shipx, shipy, "and waypoint", px, py);
+});
+
+part2 = Math.abs(shipx) + Math.abs(shipy);
 
 console.log('Part 1:', part1);
 console.log('Part 2:', part2);
