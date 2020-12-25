@@ -23,19 +23,19 @@ Some learned lesson for each day:
 10. Mental models of graphs are tough.
 11. The Game of Life is hard, but fun!
 12. Tiredness lowers IQ.
-13. TBD.
-14. TBD.
-15. TBD.
-16. TBD.
-17. TBD.
-18. TBD.
-19. TBD.
-20. TBD.
-21. TBD.
-22. TBD.
-23. TBD.
-24. TBD.
-25. TBD.
+13. AoC is not compatible with a WoW 'addiction'.
+14. AoC is not compatible with a WoW 'addiction'.
+15. AoC is not compatible with a WoW 'addiction'.
+16. AoC is not compatible with a WoW 'addiction'.
+17. AoC is not compatible with a WoW 'addiction'.
+18. AoC is not compatible with a WoW 'addiction'.
+19. AoC is not compatible with a WoW 'addiction'.
+20. AoC is not compatible with a WoW 'addiction'.
+21. AoC is not compatible with a WoW 'addiction'.
+22. AoC is not compatible with a WoW 'addiction'.
+23. AoC is not compatible with a doing 'meta' work around AoC.
+24. AoC is not compatible with a WoW 'addiction'.
+25. **Doing what you love most is most important.**
 
 ## Compendium Repositories
 
